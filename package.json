@@ -8,7 +8,7 @@
     "start": "node index.js"
   },
   "engines": {
-    "node": "6.4.1"
+    "node": "10.15.1"
   },
   "author": "Rodrigo Mascarenhas",
   "license": "ISC",
