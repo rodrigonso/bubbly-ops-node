@@ -29,9 +29,10 @@ router.get("/", async(req, res) => {
     res.send(weeks)
 })
 
-router.delete("/", async(req, res) => {
-    console.log(req.body)
-    const week = await Week.findById(req.body._id)
+router.delete("/:id", async(req, res) => {
+    console.log(req.params)
+    const week = await Week.findById(req.params.id)
+    console.log(week)
     if (!week) return res.status(404).send("We haven't found the requested item")
 
      week.remove()
