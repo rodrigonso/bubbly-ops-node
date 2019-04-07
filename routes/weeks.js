@@ -30,8 +30,9 @@ router.get("/", async(req, res) => {
 })
 
 router.delete("/", async(req, res) => {
-    const week = await Week.findOne({ _id: req.body._id })
-    if (!week) res.status(404).send("We haven't found the requested item")
+    console.log(req.body)
+    const week = await Week.findById(req.body._id)
+    if (!week) return res.status(404).send("We haven't found the requested item")
 
      week.remove()
      await week.save()
