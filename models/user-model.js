@@ -41,7 +41,7 @@ function validateUser(user) {
         name: Joi.string().min(3).max(55).required(),
         email: Joi.string().email().required(),
         username: Joi.string().alphanum().min(3).max(30).required(),
-        password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).required()
+        password: Joi.string().regex(/^[a-zA-Z0-9]{5,30}$/).required()
     }
 
     return Joi.validate(user, schema)

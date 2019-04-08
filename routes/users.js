@@ -18,8 +18,8 @@ router.post('/', async(req, res) => {
         password: req.body.password
     });
 
-    newUser.save();
-    res.send(newUser);
+    await newUser.save();
+    res.status(200).send(newUser);
 })
 
 module.exports = router;

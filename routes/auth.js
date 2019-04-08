@@ -41,12 +41,15 @@ router.post('/register', async(req, res) => {
     const { name, email, username, password } = req.body;
 
     // validate user
-    const { error} = validateUser(req.body);
-    if (error) res.status(400).send(error.details[0].message)
+    const { error } = validateUser(req.body);
+    if (error) {
+        console.log(error.details[0].message)
+        return res.status(401).send(error.details[0].message)
+    } 
 
     // check for existing user
     const existingUser = await User.findOne({ email });
-    if (existingUser) return res.status(400).json({ msg: "User already exists" });
+    if (existingUser) return res.status(402).send({ msg: "User already exists" });
 
     // create new user
     const newUser = await new User({
@@ -68,8 +71,9 @@ router.post('/register', async(req, res) => {
             config.get("jwtSecret"),
             { expiresIn: 3600 },
             (err, token) => {
+                console.log(err, token)
                 if (err) throw err;
-                res.json({
+                return res.status(200).send({
                     token,
                     user: { id: newUser.id, name: newUser.name, username: newUser.username, email: newUser.email }
                 });
