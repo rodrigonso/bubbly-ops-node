@@ -67,7 +67,7 @@ router.post('/register', async(req, res) => {
         newUser.save();
 
         jwt.sign(
-            { id: newUser.id, username: newUser.username },
+            { id: newUser.id, username: newUser.username, name: newUser.name, email: newUser.email },
             config.get("jwtSecret"),
             { expiresIn: 3600 },
             (err, token) => {
