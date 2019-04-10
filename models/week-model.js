@@ -6,29 +6,10 @@ const weekSchema = new mongoose.Schema({
         type: Array,
         required: true
     },
-    totalDriving: {
-        type: Number,
-        required: true
-    },
-    totalHours: {
-        type: Number,
-        required: true
-    },
-    totalRevenue: {
-        type: Number,
-        required: true
-    },
-    totalServices: {
-        type: Number,
-        required: true
-    },
-    range: {
-        type: Array,
-        required: true
-    },
-    detailer: {
-        type: Object,
-        required: true
+    date: {
+        type: String,
+        required: true,
+        unique: true
     }
 })
 
@@ -37,12 +18,7 @@ const Week = new mongoose.model('Week', weekSchema);
 function validateWeek(week) {
     const schema = {
         data: Joi.array().unique().required(),
-        range: Joi.array().unique().required(),
-        totalDriving: Joi.number().required(),
-        totalRevenue: Joi.number().required(),
-        totalHours: Joi.number().required(),
-        totalServices: Joi.number().required(),
-        detailer: Joi.object().required()
+        date: Joi.string().unique().requied()
     }
 
     return Joi.validate(week, schema);

@@ -12,12 +12,8 @@ router.post("/", async(req, res) => {
 
     const week = await new Week({
         data: req.body.data,
-        range: req.body.range,
-        detailer: req.body.detailer,
-        totalDriving: req.body.totalDriving,
-        totalHours: req.body.totalHours,
-        totalRevenue: req.body.totalRevenue,
-        totalServices: req.body.totalServices,
+        date: req.body.data
+
     })
 
     await week.save()
