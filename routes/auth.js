@@ -18,17 +18,17 @@ router.post('/login', async(req, res) => {
     
     // validate user password
     const isMatch = await bcrypt.compare(password, existingUser.password);
-    if (!isMatch) return res.send(400).json({ msg: "Invalid Credentials" });
-
+    if (!isMatch) return res.status(400).json({ msg: "Invalid Credentials" });
+    console.log(existingUser)
     jwt.sign(
-        { id: existingUser.id, username: existingUser.username, isAdmin: existingUser.isAdmin, name: existingUser.name, email: existingUser.email },
+        { id: existingUser.id, username: existingUser.username, isAdmin: existingUser.isAdmin, name: existingUser.name, email: existingUser.email, employeeId: existingUser.employeeId },
         config.get("jwtSecret"),
         { expiresIn: 3600 },
         (err, token) => {
             if (err) throw err;
             res.json({
                 token,
-                user: { id: existingUser.id, name: existingUser.name, username: existingUser.username, email: existingUser.email, isAdmin: existingUser.isAdmin}
+                user: { id: existingUser.id, name: existingUser.name, username: existingUser.username, email: existingUser.email, isAdmin: existingUser.isAdmin, employeeId: existingUser.employeeId }
             })
         }
     )
