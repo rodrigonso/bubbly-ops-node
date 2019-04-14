@@ -11,7 +11,7 @@ router.post('/saveJob/:employeeId', async(req, res) => {
     if (req.body.isCompleted) res.status(400).send("Job is already completed")
 
     const newJob = await new Job({
-        employeeId: req.params.id,
+        employeeId: req.params.employeeId,
         isCompleted: true,
         vehicleType: req.body.vehicleType,
         serviceType: req.body.serviceType,
@@ -58,8 +58,28 @@ router.put('/updateJob/:id', async(req, res) => {
 router.get('/getJobs/:id', async(req, res) => {
     const employee = await Employee.findById(req.params.id)
     if (!employee) res.status(404).send("No employee found with given id")
-
     res.send(employee.jobs)
+})
+
+router.get('/getAllJobs', async(req, res) => {
+    const jobs = await Job.find()
+    res.send(jobs)
+})
+
+router.delete('/deleteJob/:employeeId/:id', async(req, res) => {
+    console.log(req.body._id)
+    const employee = await Employee.findById(req.params.employeeId)
+    if (!employee) res.status(404).send("We couldn't find an employee with the given id")
+
+    const job = employee.jobs.id(req.params.id)
+    job.remove()
+    employee.save()
+    
+    const jobs = await Job.findById(req.params.id)
+    jobs.remove()
+    jobs.save()
+
+    res.send(job)
 })
 
 module.exports = router
