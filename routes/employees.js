@@ -3,7 +3,7 @@ const { Employee } = require('../models/employee-model')
 const router = express.Router()
 
 router.get("/", async(req, res) => {
-    const employees = await Employee.find().select("-jobs")
+    const employees = await Employee.find()
     if (!employees) res.status(404).send("No employees found")
 
     res.send(employees)

@@ -10,6 +10,7 @@ router.get("/", async(req, res) => {
 router.post('/', async(req, res) => {
     const newService = await new Service({
         name: req.body.name,
+        slug: req.body.slug,
         duration: req.body.duration,
         price: req.body.price,
         vehicleType: req.body.vehicleType
