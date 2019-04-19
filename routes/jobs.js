@@ -13,7 +13,6 @@ router.post('/saveJob/:employeeId', async(req, res) => {
     const newJob = await new Job({
         employeeId: req.params.employeeId,
         isCompleted: true,
-        date: req.body.date,
         distances: req.body.distances,
         vehicleType: req.body.vehicleType,
         serviceType: req.body.serviceType,
