@@ -5,6 +5,13 @@ const jobSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    date: {
+        type: String
+    },
+    distances: {
+        type: Object,
+        required: true
+    },
     vehicleType: {
         type: Object,
     },
