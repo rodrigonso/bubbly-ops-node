@@ -10,6 +10,9 @@ router.post('/saveJob/:employeeId', async(req, res) => {
 
     if (req.body.isCompleted) res.status(400).send("Job is already completed")
 
+    const existingJob = await Job.findOne({ "jobData.id": req.body.jobData.id })
+    if (existingJob) res.status(400).send("You have already saved this job to the database!")
+
     const newJob = await new Job({
         employeeId: req.params.employeeId,
         isCompleted: true,
