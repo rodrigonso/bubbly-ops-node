@@ -11,9 +11,15 @@ const jobSchema = new mongoose.Schema({
     },
     vehicleType: {
         type: Object,
+        required: true
     },
     serviceType: {
-        type: Object
+        type: Object,
+        required: true,
+    },
+    upgrades: {
+        type: Array,
+        required: true
     },
     jobData: {
         type: Object,

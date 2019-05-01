@@ -4,40 +4,42 @@ const  { Employee } = require('../models/employee-model')
 const router = express.Router()
 
 router.post('/saveJob/:employeeId', async(req, res) => {
+    const { distances, vehicleType, serviceType, jobData, upgrades } = req.body
 
     const currentEmployee = await Employee.findById(req.params.employeeId)
-    if (!currentEmployee) res.status(404).send("We did not find a valid employee with given id")
+    if (!currentEmployee) res.status(404).send({ msg: "We did not find a valid employee with given id"})
 
-    if (req.body.isCompleted) res.status(400).send("Job is already completed")
+    if (req.body.isCompleted) res.status(400).send({ msg: "Job is already completed!"})
 
-    const existingJob = await Job.findOne({ "jobData.id": req.body.jobData.id })
-    if (existingJob) res.status(400).send("You have already saved this job to the database!")
+    const existingJob = await Job.findOne({ "jobData.id": jobData.id })
+    if (existingJob) res.status(400).send({ msg: "You have already saved this job to the database!"})
 
-    const newJob = await new Job({
-        employeeId: req.params.employeeId,
-        isCompleted: true,
-        distances: req.body.distances,
-        vehicleType: req.body.vehicleType,
-        serviceType: req.body.serviceType,
-        jobData: {
-            description: req.body.jobData.description,
-            distances: req.body.jobData.distances,
-            end: req.body.jobData.end,
-            id: req.body.jobData.id,
-            location: req.body.jobData.location,
-            start: req.body.jobData.start,
-            summary: req.body.jobData.summary,
-            start: req.body.jobData.start,
-            start: req.body.jobData.start,
-            organizer: req.body.jobData.organizer
-        },
-       
-    })
-    newJob.save()
+    if (!existingJob) {
+        const newJob = await new Job({
+            employeeId: req.params.employeeId,
+            isCompleted: true,
+            distances,
+            vehicleType,
+            serviceType,
+            upgrades,
+            jobData: {
+                description: jobData.description,
+                end: jobData.end,
+                id: jobData.id,
+                location: jobData.location,
+                start: jobData.start,
+                summary: jobData.summary,
+                start: jobData.start,
+                start: jobData.start,
+                organizer: jobData.organizer
+            }
+        })
+        newJob.save()
 
-    currentEmployee.jobs.push(newJob)
-    currentEmployee.save()
-    res.send(newJob)
+        currentEmployee.jobs.push(newJob)
+        currentEmployee.save()
+        res.send(newJob)
+    }
 })
 
 router.post('/getJob/:id', async(req, res) => {
