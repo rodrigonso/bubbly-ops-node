@@ -72,7 +72,7 @@ router.get('/getJobs/:id', async(req, res) => {
 })
 
 router.get('/getAllJobs', async(req, res) => {
-    const jobs = await Job.find().sort("_id")
+    const jobs = await Job.find().sort("date")
     res.send(jobs)
 })
 
