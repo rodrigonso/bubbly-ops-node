@@ -4,7 +4,7 @@ const  { Employee } = require('../models/employee-model')
 const router = express.Router()
 
 router.post('/saveJob/:employeeId', async(req, res) => {
-    const { distances, vehicleType, serviceType, jobData, upgrades } = req.body
+    const { distances, vehicleType, serviceType, jobData, upgrades, start, date, location, summary } = req.body
 
     const currentEmployee = await Employee.findById(req.params.employeeId)
     if (!currentEmployee) res.status(404).send({ msg: "We did not find a valid employee with given id"})
@@ -22,6 +22,10 @@ router.post('/saveJob/:employeeId', async(req, res) => {
             vehicleType,
             serviceType,
             upgrades,
+            start,
+            date,
+            location,
+            summary,
             jobData: {
                 description: jobData.description,
                 end: jobData.end,
