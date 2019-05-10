@@ -21,9 +21,24 @@ const jobSchema = new mongoose.Schema({
         type: Array,
         required: true
     },
+    date: {
+        type: String,
+        required: true
+    },
+    start: {
+        type: String,
+        required: true
+    },
+    summary: {
+        type: String,
+        required: true
+    },
+    location: {
+        type: String,
+        required: true
+    },
     jobData: {
         type: Object,
-        required: true
     },
     employeeId: {
         type: String,
