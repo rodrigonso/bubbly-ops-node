@@ -22,7 +22,6 @@ app.use(cors());
 app.use(helmet())
 app.use(express.json());
 
-
 // initialize Routes
 app.use('/api/users', users)
 app.use('/api/auth', auth)

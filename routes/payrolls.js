@@ -6,3 +6,5 @@ router.get("/", (req, res) => {
     const payrolls = await Payroll.find().sort("-date")
     res.send(payrolls)
 })
+
+module.exports = router
