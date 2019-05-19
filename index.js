@@ -9,6 +9,7 @@ const nexmo = require('./routes/nexmo')
 const employees = require('./routes/employees')
 const jobs = require('./routes/jobs')
 const services = require('./routes/services')
+const payrolls = require('./routes/payrolls')
 const app = express();
 
 // connect to database
@@ -29,6 +30,7 @@ app.use('/api/sms', nexmo)
 app.use('/api/employees', employees)
 app.use('/api/jobs', jobs)
 app.use('/api/services', services)
+app.use('/api/payrolls', payrolls)
 
 // start server
 const PORT = process.env.PORT || 3900
