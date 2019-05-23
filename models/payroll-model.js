@@ -9,12 +9,16 @@ const payrollSchema = new mongoose.Schema({
         type: Object,
         required: true
     },
-    hours: {
+    totalHours: {
         type: Number,
         required: true
     },
-    total: {
-        type: String,
+    totalJobs: {
+        type: Number,
+        required: true
+    },
+    totalWage: {
+        type: Number,
         required: true
     }
 })

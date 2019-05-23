@@ -16,6 +16,10 @@ const employeeSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    wage: {
+        type: Number,
+        required: true
+    },
     jobs: [jobSchema]
 })
 
