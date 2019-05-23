@@ -24,4 +24,12 @@ router.post("/", async(req, res) => {
     res.send(newPayroll)
 })
 
+router.delete("/:id", async(req, res) => {
+    const payroll = await Payroll.findById(req.params.id)
+    if (!payroll) res.status(404).send("We did not find this record in the db")
+
+    payroll.delete()
+    res.status(200).send("Record was deleted with success!")
+})
+
 module.exports = router
