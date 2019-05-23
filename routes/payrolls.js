@@ -8,7 +8,7 @@ router.get("/", async(req, res) => {
 })
 
 router.post("/", async(req, res) => {
-    const { range, employee, totalHours, totalJobs, totalWage } = req.body
+    const { range, employee, totalHours, totalJobs, totalWage, totalTips } = req.body
 
     // validate req body here
 
@@ -16,6 +16,7 @@ router.post("/", async(req, res) => {
         range,
         employee,
         totalHours,
+        totalTips,
         totalJobs,
         totalWage
     })

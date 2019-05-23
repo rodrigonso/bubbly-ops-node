@@ -13,6 +13,10 @@ const payrollSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    totalTips: {
+        type: Number,
+        required: true
+    },
     totalJobs: {
         type: Number,
         required: true
