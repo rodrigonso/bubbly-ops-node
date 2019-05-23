@@ -1,8 +1,8 @@
 const mongoose = require("mongoose")
 
 const payrollSchema = new mongoose.Schema({
-    date: {
-        type: String,
+    range: {
+        type: Array,
         required: true
     },
     employee: {

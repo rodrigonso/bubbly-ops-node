@@ -8,12 +8,12 @@ router.get("/", async(req, res) => {
 })
 
 router.post("/", async(req, res) => {
-    const { date, employee, totalHours, totalJobs, totalWage } = req.body
+    const { range, employee, totalHours, totalJobs, totalWage } = req.body
 
     // validate req body here
 
     const newPayroll = await new Payroll({
-        date,
+        range,
         employee,
         totalHours,
         totalJobs,
