@@ -94,7 +94,8 @@ router.delete('/deleteJob/:employeeId/:id', async(req, res) => {
 
 router.put('/:jobId', async(req, res) => {
     console.log(req.params.jobId)
-    const job = await Job.findByIdAndUpdate(req.params.jobId, { payrollDone: true })
+    const job = await Job.findById(req.params.jobId)
+    job.payrollDone = true
     job.save()
     res.status(200).send("All good!")
 })
