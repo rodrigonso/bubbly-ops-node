@@ -5,6 +5,10 @@ const jobSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    payrollDone: {
+        type: Boolean,
+        default: false
+    },
     distances: {
         type: Object,
         required: true
