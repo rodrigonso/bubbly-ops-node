@@ -15,7 +15,7 @@ router.post('/payrollDone', (req, res) => {
     from: "contact@bubblynow.com",
     subject: "Payroll",
     text: "Your payroll has been run!",
-    html: `<h1>Nice! Your payroll for the period of ${range[0] - range[1]} and total of ${totalWage} has been run.</h1>`
+    html: `<h1>Nice! Your payroll for the period of ${range[0] - range[1]} and total of $${totalWage} has been run.</h1>`
   }
   sgMail.send(msg)
   res.status(200).send(msg)
