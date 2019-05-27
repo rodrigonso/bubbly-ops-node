@@ -5,9 +5,9 @@ const jobSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    payrollDone: {
-        type: Boolean,
-        default: false
+    currentStep: {
+        type: Number,
+        default: 0
     },
     distances: {
         type: Object,

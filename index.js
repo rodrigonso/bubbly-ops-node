@@ -1,5 +1,4 @@
 const express = require('express');
-const config = require('config');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
@@ -10,6 +9,7 @@ const employees = require('./routes/employees')
 const jobs = require('./routes/jobs')
 const services = require('./routes/services')
 const payrolls = require('./routes/payrolls')
+const sendGrid = require('./routes/sendGrid')
 const app = express();
 
 // connect to database
@@ -30,6 +30,7 @@ app.use('/api/employees', employees)
 app.use('/api/jobs', jobs)
 app.use('/api/services', services)
 app.use('/api/payrolls', payrolls)
+app.use('/api/sendGrid', sendGrid)
 
 // start server
 const PORT = process.env.PORT || 3900
