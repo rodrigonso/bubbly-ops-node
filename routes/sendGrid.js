@@ -24,8 +24,14 @@ router.post('/payrollDone', (req, res) => {
       end: range[1]
     }
   }
-  sgMail.send(msg)
-  res.status(200).send(msg)
+
+  try {
+    sgMail.send(msg)
+    res.status(200).send(msg)
+  }
+  catch (ex) {
+    console.log(ex)
+  }
 })  
 
 
