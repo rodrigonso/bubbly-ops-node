@@ -6,26 +6,23 @@ const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(config.get('sendGridApiKey'))
 
 router.post('/payrollDone', (req, res) => {
-  const { to, range, totalWage, totalHours, totalTips } = req.body
+  const { to, range, totalWage, totalHours, totalTips, name, totalJobs } = req.body
 
   const msg = {
     to: [to, 'rodrigo@bubblynow.com', 'eric@bubblynow.com'] ,
     from: "contact@bubblynow.com",
     subject: "Payroll",
     text: "Your payroll has been run!",
-    html: 
-      `
-      <div>
-        <h4>Great News!</h4>
-        <p>Congratulations, a new payroll has been submitted for you!</p>
-        <br />
-        <p>Period: ${range[0]} - ${range[1]}</p>
-        <p>Total Tip: $${totalTips}</p>
-        <p>Total Hours: ${totalHours}</p>
-        <br />
-        <strong>Total $${totalWage}</strong>
-      </div>
-      `
+    templateId: "d-3b1e6e2925dc4760a710730e7f62af88",
+    dynamic_template_data: {
+      totalTips,
+      totalHours,
+      totalWage,
+      totalJobs,
+      name,
+      start: range[0],
+      end: range[1]
+    }
   }
   sgMail.send(msg)
   res.status(200).send(msg)
