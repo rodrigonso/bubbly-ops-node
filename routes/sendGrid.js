@@ -8,6 +8,8 @@ sgMail.setApiKey(config.get('sendGridApiKey'))
 router.post('/payrollDone', (req, res) => {
   const { to, range, totalWage, totalHours, totalTips, name, totalJobs } = req.body
 
+  
+
   const msg = {
     to: [to, 'rodrigo@bubblynow.com', 'eric@bubblynow.com'] ,
     from: "contact@bubblynow.com",
@@ -24,6 +26,8 @@ router.post('/payrollDone', (req, res) => {
       end: range[1]
     }
   }
+
+  console.log(msg)
 
   try {
     sgMail.send(msg)
