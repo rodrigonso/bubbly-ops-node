@@ -11,7 +11,7 @@ router.post('/payrollDone', (req, res) => {
   
 
   const msg = {
-    to: [to, 'rodrigo@bubblynow.com', 'eric@bubblynow.com'] ,
+    to: [to, 'contact@bubblynow.com'] ,
     from: "contact@bubblynow.com",
     subject: "Payroll",
     text: "Your payroll has been run!",
