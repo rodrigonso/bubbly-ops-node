@@ -3,6 +3,8 @@ const { Job } = require('../models/job-model')
 const  { Employee } = require('../models/employee-model')
 const router = express.Router()
 
+
+// save new job to db
 router.post('/saveJob/:employeeId', async(req, res) => {
     const { distances, vehicleType, serviceType, jobData, upgrades, start, date, location, summary } = req.body
 
@@ -55,15 +57,6 @@ router.post('/getJob/:id', async(req, res) => {
     res.send(null)
 })
 
-router.put('/updateJob/:id', async(req, res) => {
-    const job = await Job.findOne({ "jobData.id": req.params.id })
-    if (!job) res.status(404).send("No job found with give id")
-    if (job && !job.isCompleted) {
-        job.vehicleType = req.body.vehicleType
-        job.save()
-    }
-    if (job && job.isCompleted) res.status(400).send("Job has already been completed")
-})
 
 router.get('/getJobs/:id', async(req, res) => {
     const employee = await Employee.findById(req.params.id)
@@ -92,10 +85,10 @@ router.delete('/deleteJob/:employeeId/:id', async(req, res) => {
     res.send(job)
 })
 
-router.put('/:jobId', async(req, res) => {
+router.put('/updateJob/:id', async(req, res) => {
     console.log(req.params.jobId)
-    const job = await Job.findById(req.params.jobId)
-    job.currentStep = req.body.currentStep
+    const job = await Job.findByIdAndUpdate(req.params.id, req.body)
+    console.log(job)
     job.save()
     res.status(200).send("All good!")
 })
