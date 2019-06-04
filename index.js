@@ -1,4 +1,5 @@
 const express = require('express');
+const config = require('config')
 const cors = require('cors');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
@@ -16,6 +17,8 @@ const app = express();
 mongoose.connect("mongodb://rodrigo:rodrigo11@ds123635.mlab.com:23635/bubbly-ops", { useNewUrlParser: true }, () => {
     console.log('Connected to MongoDB')
 });
+
+console.log(config.get("nexmoApiSecret"))
 
 // initialize Middleware
 app.use(cors());

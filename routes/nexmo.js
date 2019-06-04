@@ -1,10 +1,11 @@
 const express = require('express')
+const config = require('config')
 const router = express.Router()
 const Nexmo = require('nexmo')
 
 const nexmo = new Nexmo({
-    apiKey: process.env.nexmoApiKey,
-    apiSecret: process.env.nexmoApiSecret
+    apiKey: config.get("nexmoApiKey"),
+    apiSecret: config.get("nexmoApiSecret")
 })
 
 
@@ -13,8 +14,12 @@ router.post('/', (req, res) => {
     const to = req.body.to
     const text = req.body.text
 
-    nexmo.message.sendSms(from, to, text);
-    res.send("Your message was sent with success");
+    try {
+    	nexmo.message.sendSms(from, to, text);
+			res.status(200).send("Your message was sent with success");
+		} catch (ex) {
+			res.status(400).send(ex)
+		}
 })
 
 module.exports = router

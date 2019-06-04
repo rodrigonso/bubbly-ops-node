@@ -1,7 +1,7 @@
 {
-    "mongoURI": "mongodb://rodrigo:rodrigo11@ds123635.mlab.com:23635/bubbly-ops",
-    "jwtSecret": "dsadassda",
-    "nexmoApiKey": "aeea2fdb",
-    "nexmoApiSecret": "VXW84s0L0ywY1lu4",
-    "sendGridApiKey": "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"
+    "mongoURI": "mongoUri",
+    "jwtSecret": "jwtSecret",
+    "nexmoApiKey": "nexmoApiKey",
+    "nexmoApiSecret": "nexmoApiSecret",
+    "sendGridApiKey": "sendGridApiKey"
 }
