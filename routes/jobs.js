@@ -1,15 +1,11 @@
 const express = require('express')
 const { Job } = require('../models/job-model')
-const  { Employee } = require('../models/employee-model')
 const router = express.Router()
 
 
 // save new job to db
-router.post('/saveJob/:employeeId', async(req, res) => {
+router.post('/', async(req, res) => {
     const { distances, vehicleType, serviceType, jobData, upgrades, start, date, location, summary } = req.body
-
-    const currentEmployee = await Employee.findById(req.params.employeeId)
-    if (!currentEmployee) res.status(404).send({ msg: "We did not find a valid employee with given id"})
 
     if (req.body.isCompleted) res.status(400).send({ msg: "Job is already completed!"})
 
@@ -40,15 +36,14 @@ router.post('/saveJob/:employeeId', async(req, res) => {
                 organizer: jobData.organizer
             }
         })
-        newJob.save()
 
-        currentEmployee.jobs.push(newJob)
-        currentEmployee.save()
+        newJob.save()
         res.send(newJob)
     }
 })
 
-router.post('/getJob/:id', async(req, res) => {
+
+router.post('/:id', async(req, res) => {
     console.log(req.params.id)
     const job = await Job.findOne({ "jobData.id": req.params.id })
     if (job && job.isCompleted) res.send(null)
@@ -57,27 +52,12 @@ router.post('/getJob/:id', async(req, res) => {
     res.send(null)
 })
 
-
-router.get('/getJobs/:id', async(req, res) => {
-    const employee = await Employee.findById(req.params.id)
-    if (!employee) res.status(404).send("No employee found with given id")
-    res.send(employee.jobs)
-})
-
-router.get('/getAllJobs', async(req, res) => {
+router.get('/', async(req, res) => {
     const jobs = await Job.find().sort("-date")
     res.send(jobs)
 })
 
-router.delete('/deleteJob/:employeeId/:id', async(req, res) => {
-    console.log(req.body._id)
-    const employee = await Employee.findById(req.params.employeeId)
-    if (!employee) res.status(404).send("We couldn't find an employee with the given id")
-
-    const job = employee.jobs.id(req.params.id)
-    job.remove()
-    employee.save()
-    
+router.delete('/:id', async(req, res) => {    
     const jobs = await Job.findById(req.params.id)
     jobs.remove()
     jobs.save()
@@ -85,7 +65,7 @@ router.delete('/deleteJob/:employeeId/:id', async(req, res) => {
     res.send(job)
 })
 
-router.put('/updateJob/:id', async(req, res) => {
+router.put('/:id', async(req, res) => {
     const job = await Job.findByIdAndUpdate(req.params.id, req.body)
     if (!job) res.status(400).send("We didn't find a job with the given id")
 
