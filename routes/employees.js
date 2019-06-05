@@ -9,6 +9,13 @@ router.get("/", async(req, res) => {
     res.send(employees)
 })
 
+router.get("/:id", async(req, res) => {
+    const employee = await Employee.findById(req.params.id)
+    if (!employee) res.status(400).send("We did not find employee with given Id")
+
+    res.status(200).send(employee)
+})
+
 router.put('/:id', async(req, res) => {
     const existingEmployee = await Employee.findById(req.params.id)
     if (!existingEmployee) res.status(400).send("We did not find employee with given Id")
