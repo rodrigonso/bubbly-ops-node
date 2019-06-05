@@ -20,7 +20,9 @@ const employeeSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    jobs: [jobSchema]
+    jobInProgress: {
+        type: Object,
+    }
 })
 
 const Employee = new mongoose.model("Employee", employeeSchema)

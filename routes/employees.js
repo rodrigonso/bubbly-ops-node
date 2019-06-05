@@ -9,9 +9,18 @@ router.get("/", async(req, res) => {
     res.send(employees)
 })
 
+router.put('/:id', async(req, res) => {
+    const existingEmployee = await Employee.findById(req.params.id)
+    if (!existingEmployee) res.status(400).send("We did not find employee with given Id")
+
+    Employee.jobInProgress = req.body
+    Employee.save()
+    res.status(200).send(req.body)
+})
+
 router.post('/', async(req, res) => {
     const existingEmployee = await Employee.findOne(req.body)
-    if (!existingEmployee) res.status(400).send("Employee already exists")
+    if (existingEmployee) res.status(400).send("Employee already exists")
 
     const newEmployee = await new Employee({
         name: req.body.name,
