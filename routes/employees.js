@@ -13,8 +13,8 @@ router.put('/:id', async(req, res) => {
     const existingEmployee = await Employee.findById(req.params.id)
     if (!existingEmployee) res.status(400).send("We did not find employee with given Id")
 
-    Employee.jobInProgress = req.body
-    Employee.save()
+    existingEmployee.jobInProgress = req.body
+    existingEmployee.save()
     res.status(200).send(req.body)
 })
 
