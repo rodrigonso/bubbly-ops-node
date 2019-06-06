@@ -59,10 +59,11 @@ router.get('/', async(req, res) => {
 
 router.delete('/:id', async(req, res) => {    
     const jobs = await Job.findById(req.params.id)
+    if (!jobs) res.status(400).send("Error!")
+
     jobs.remove()
     jobs.save()
-
-    res.send(job)
+    res.status(200).send(job)
 })
 
 router.put('/:id', async(req, res) => {
