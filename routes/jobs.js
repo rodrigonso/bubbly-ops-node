@@ -5,7 +5,7 @@ const router = express.Router()
 
 // save new job to db
 router.post('/', async(req, res) => {
-    const { distances, vehicleType, serviceType, jobData, upgrades, start, date, location, summary } = req.body
+    const { distances, vehicleType, serviceType, jobData, upgrades, start, date, location, summary, employeeId } = req.body
 
     if (req.body.isCompleted) res.status(400).send({ msg: "Job is already completed!"})
 
@@ -14,7 +14,7 @@ router.post('/', async(req, res) => {
 
     if (!existingJob) {
         const newJob = await new Job({
-            employeeId: req.params.employeeId,
+            employeeId,
             isCompleted: true,
             distances,
             vehicleType,
