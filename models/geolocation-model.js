@@ -1,11 +1,12 @@
 const mongoose = require('mongoose')
 
 const geolocationSchema = new mongoose.Schema({
-  location: {
-    type: Object
+  geolocation: {
+    type: Object,
+    required: true
   }
 })
 
-const Gelocation = new mongoose.model('Geolocation', geolocationSchema)
+const Geolocation = new mongoose.model('Geolocation', geolocationSchema)
 
-module.exports.Gelocation = Gelocation
+module.exports.Geolocation = Geolocation
