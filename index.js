@@ -11,6 +11,7 @@ const jobs = require('./routes/jobs')
 const services = require('./routes/services')
 const payrolls = require('./routes/payrolls')
 const sendGrid = require('./routes/sendGrid')
+const geolocation = require('./routes/geolocation')
 const app = express();
 
 // connect to database
@@ -34,6 +35,7 @@ app.use('/api/jobs', jobs)
 app.use('/api/services', services)
 app.use('/api/payrolls', payrolls)
 app.use('/api/sendGrid', sendGrid)
+app.use('/api/gelocation', geolocation)
 
 // start server
 const PORT = process.env.PORT || 3900

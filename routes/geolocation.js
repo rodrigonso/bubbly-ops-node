@@ -10,3 +10,5 @@ router.post('/', async(req, res) => {
   geolocation.save()
   res.status(200).send(geolocation)
 })
+
+module.exports = router
