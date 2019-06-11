@@ -35,7 +35,7 @@ app.use('/api/jobs', jobs)
 app.use('/api/services', services)
 app.use('/api/payrolls', payrolls)
 app.use('/api/sendGrid', sendGrid)
-app.use('/api/gelocation', geolocation)
+app.use('/api/geolocation', geolocation)
 
 // start server
 const PORT = process.env.PORT || 3900
