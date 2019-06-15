@@ -32,7 +32,9 @@ router.post('/', async(req, res) => {
     const newEmployee = await new Employee({
         name: req.body.name,
         email: req.body.email,
-        username: req.body.username
+        username: req.body.username,
+        wage: req.body.wage,
+        jobInProgress: req.body.jobInProgress
     })
 
     newEmployee.save()
