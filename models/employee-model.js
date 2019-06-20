@@ -11,10 +11,18 @@ const employeeSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    phoneNumber: {
+        type: String,
+        required: true
+    },
     username: {
         type: String,
         required: true,
         unique: true
+    },
+    rating: {
+        type: Number,
+        default: 0
     },
     wage: {
         type: Number,
