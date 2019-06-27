@@ -15,8 +15,8 @@ const geolocation = require('./routes/geolocation')
 const app = express();
 
 // connect to database
-const mongoUri = config.get('mongoUri')
-mongoose.connect(mongoUri, { useNewUrlParser: true }, () => {
+const mongoURI = config.get('mongoURI')
+mongoose.connect(mongoURI, { useNewUrlParser: true }, () => {
     console.log('Connected to MongoDB')
 });
 
