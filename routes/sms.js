@@ -17,7 +17,8 @@ router.post('/reply', (req, res) => {
         twiml.message('This is a no reply number. To get in contact with our team please dial +1(832)929-8338.')
     }
 
-    res.send(req.body)
+    res.writeHead(200, { 'Content-Type': 'text/xml' })
+    res.end(twiml.toString())
 })
 
 router.post('/', (req, res) => {
