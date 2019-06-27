@@ -8,7 +8,8 @@ const client = require('twilio')(accountSid, authToken)
 const MessagingResponse = require('twilio').twiml.MessagingResponse
 
 router.post('/reply', (req, res) => {
-    console.log(req.body)
+    console.log("Reply Text", req.body)
+    res.send(req.body)
 })
 
 router.post('/', (req, res) => {
