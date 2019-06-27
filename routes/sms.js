@@ -1,11 +1,14 @@
 const express = require('express')
 const config = require('config')
 const router = express.Router()
+const bodyParser = require('body-parser')
 
 const accountSid = config.get('accountSid')
 const authToken = config.get('authToken')
 const client = require('twilio')(accountSid, authToken)
 const MessagingResponse = require('twilio').twiml.MessagingResponse
+
+router.use(bodyParser.urlencoded({ extended: false }))
 
 router.post('/reply', (req, res) => {
     console.log("Reply Text", req.body)
