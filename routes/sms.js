@@ -5,6 +5,11 @@ const router = express.Router()
 const accountSid = config.get('accountSid')
 const authToken = config.get('authToken')
 const client = require('twilio')(accountSid, authToken)
+const MessagingResponse = require('twilio').twiml.MessagingResponse
+
+router.post('/reply', (req, res) => {
+    console.log(req.body)
+})
 
 router.post('/', (req, res) => {
     client.messages.create({
