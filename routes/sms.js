@@ -11,7 +11,12 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse
 router.use(bodyParser.urlencoded({ extended: false }))
 
 router.post('/reply', (req, res) => {
-    console.log("Reply Text", req.body)
+    const twiml = new MessagingResponse()
+
+    if (req.body.Body) {
+        twiml.message('This is a no reply number. To get in contact with our team please dial +1(832)929-8338.')
+    }
+
     res.send(req.body)
 })
 
