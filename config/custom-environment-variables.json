@@ -1,7 +1,7 @@
 {
     "mongoURI": "mongoUri",
     "jwtSecret": "jwtSecret",
-    "nexmoApiKey": "nexmoApiKey",
-    "nexmoApiSecret": "nexmoApiSecret",
+    "authToken": "authToken",
+    "accountSid": "accountSid",
     "sendGridApiKey": "sendGridApiKey"
 }

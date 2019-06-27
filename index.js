@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
-const nexmo = require('./routes/nexmo')
+const sms = require('./routes/sms')
 const employees = require('./routes/employees')
 const jobs = require('./routes/jobs')
 const services = require('./routes/services')
@@ -15,11 +15,10 @@ const geolocation = require('./routes/geolocation')
 const app = express();
 
 // connect to database
-mongoose.connect("mongodb://rodrigo:rodrigo11@ds123635.mlab.com:23635/bubbly-ops", { useNewUrlParser: true }, () => {
+const mongoUri = config.get('mongoUri')
+mongoose.connect(mongoUri, { useNewUrlParser: true }, () => {
     console.log('Connected to MongoDB')
 });
-
-console.log(config.get("nexmoApiSecret"))
 
 // initialize Middleware
 app.use(cors());
@@ -29,7 +28,7 @@ app.use(express.json());
 // initialize Routes
 app.use('/api/users', users)
 app.use('/api/auth', auth)
-app.use('/api/sms', nexmo)
+app.use('/api/sms', sms)
 app.use('/api/employees', employees)
 app.use('/api/jobs', jobs)
 app.use('/api/services', services)
