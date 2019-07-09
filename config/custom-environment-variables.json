@@ -3,5 +3,6 @@
     "jwtSecret": "jwtSecret",
     "authToken": "authToken",
     "accountSid": "accountSid",
-    "sendGridApiKey": "sendGridApiKey"
+    "sendGridApiKey": "sendGridApiKey",
+    "delightedApiKey": "delightedApiKey"
 }
