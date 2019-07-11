@@ -1,0 +1,8 @@
+{
+    "mongoURI": "mongoUri",
+    "jwtSecret": "jwtSecret",
+    "authToken": "authToken",
+    "accountSid": "accountSid",
+    "sendGridApiKey": "sendGridApiKey",
+    "delightedApiKey": "delightedApiKey"
+}
