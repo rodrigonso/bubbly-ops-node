@@ -1,8 +1,0 @@
-{
-    "mongoURI": "mongodb://rodrigo:rodrigo11@ds123635.mlab.com:23635/bubbly-ops",
-    "jwtSecret": "ASDOLSAOI1923",
-    "authToken": "65a39ddd261930990a292bc31a0afd45",
-    "accountSid": "AC76b472b733604d0d8ab43004fc39b303",
-    "sendGridApiKey": "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",
-    "delightedApiKey": "dVtQfkjqjCa1BUe4JcaEw67hhWiHCLvE"
-}
