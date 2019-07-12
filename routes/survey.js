@@ -1,11 +1,14 @@
 const express = require('express')
 const config = require('config')
-const delighted = require('delighted')(config.get('delightedApiKey'))
 const router = express.Router()
 
+const delightedApiKey = config.get('delightedApiKey')
+const delighted = require('delighted')(delightedApiKey)
+
 router.post('/', (req, res) => {
+  console.log(req.body.email)
   delighted.person.create({
-    email: req.body.email,
+    email: req.body.email
   }).then(response => {
     console.log(response)
     res.status(200).send(response)
