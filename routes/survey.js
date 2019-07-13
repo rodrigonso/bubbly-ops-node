@@ -25,14 +25,14 @@ router.post('/response', async(req, res) => {
   const employee = await Employee.findById(req.body.event_data.person_properties.employeeId)
   if (!employee) res.status(400).send({ msg: 'No employee with given Id' })
 
-  console.log("Employee:", employee.username)
+  console.log("Employee:", employee)
   console.log("Rating:", employee.rating)
   console.log("Score", req.body.event_data.score)
 
   //employee.rating = (employee.rating + req.body.score) / 2
   //employee.save()
 
-  res.status(200).send(req.body, employee)
+  res.status(200).send()
 })
 
 module.exports = router
