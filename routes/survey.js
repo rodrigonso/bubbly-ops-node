@@ -1,6 +1,6 @@
 const express = require('express')
 const { Employee } = require('../models/employee-model')
-const { Service } = require("../models/service-model")
+const { Job } = require('../models/job-model')
 const config = require('config')
 const router = express.Router()
 
@@ -22,9 +22,9 @@ router.post('/', (req, res) => {
 })
 
 router.post('/response', async(req, res) => {
-  const service = await Service.findOne({'jobData.id': req.body.event_data.person_properties.serviceId})
-  console.log(service)
-  if (!service) res.status(400).send({ msg: "no service found with given id" })
+  const job = await Job.findOne({'jobData.id': req.body.event_data.person_properties.serviceId})
+  console.log(job)
+  if (!job) res.status(400).send({ msg: "no service found with given id" })
 
   const employee = await Employee.findById(req.body.event_data.person_properties.employeeId)
   if (!employee) res.status(400).send({ msg: 'No employee with given Id' })
