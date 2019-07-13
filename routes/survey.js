@@ -1,5 +1,6 @@
 const express = require('express')
 const { Employee } = require('../models/employee-model')
+const { Service } = require("../models/service-model")
 const config = require('config')
 const router = express.Router()
 
@@ -21,18 +22,23 @@ router.post('/', (req, res) => {
 })
 
 router.post('/response', async(req, res) => {
+  const service = await Service.findOne({'job.jobData.id': req.body.event_data.person_properties.serviceId})
+  console.log(service)
+  if (!service) res.status(400).send({ msg: "no service found with given id" })
 
   const employee = await Employee.findById(req.body.event_data.person_properties.employeeId)
   if (!employee) res.status(400).send({ msg: 'No employee with given Id' })
 
+  else {
   console.log("Employee:", employee)
   console.log("Rating:", employee.rating)
   console.log("Score", req.body.event_data.score)
 
-  //employee.rating = (employee.rating + req.body.score) / 2
-  //employee.save()
+  employee.rating = (employee.rating + req.body.event_data.score) / 2
+  employee.save()
 
   res.status(200).send()
+  }
 })
 
 module.exports = router
