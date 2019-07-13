@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
 })
 
 router.post('/response', async(req, res) => {
-  const service = await Service.findOne({'job.jobData.id': req.body.event_data.person_properties.serviceId})
+  const service = await Service.findOne({'jobData.id': req.body.event_data.person_properties.serviceId})
   console.log(service)
   if (!service) res.status(400).send({ msg: "no service found with given id" })
 
