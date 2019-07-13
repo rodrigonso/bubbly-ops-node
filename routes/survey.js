@@ -28,6 +28,7 @@ router.post('/response', async(req, res) => {
   employee.rating = (employee.rating + req.body.score) / 2
   employee.save()
 
+  console.log(req.body, employee)
   res.status(200).send(req.body, employee)
 })
 
