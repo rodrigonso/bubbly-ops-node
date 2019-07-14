@@ -3,7 +3,7 @@ const  { Payroll } = require('../models/payroll-model')
 const router = express.Router()
 
 router.get("/", async(req, res) => {
-    const payrolls =  await Payroll.find().sort("-date")
+    const payrolls =  await Payroll.find().sort({ _id: -1 })
     res.send(payrolls)
 })
 

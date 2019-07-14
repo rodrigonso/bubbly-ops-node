@@ -53,7 +53,7 @@ router.post('/:id', async(req, res) => {
 })
 
 router.get('/', async(req, res) => {
-    const jobs = await Job.find().sort("-date")
+    const jobs = await Job.find().sort({ _id: -1 })
     res.send(jobs)
 })
 
