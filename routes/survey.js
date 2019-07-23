@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
   })
 })
 
-router.get('/rating', async(req, res) => {
+router.get('/rating/:employeeId', async(req, res) => {
 
   const employee = await Employee.findById(req.param.employeeId)
   if (!employee) res.status(400).send({ msg: 'No employee with given Id' })
