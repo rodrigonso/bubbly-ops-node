@@ -21,7 +21,7 @@ const employeeSchema = new mongoose.Schema({
         unique: true
     },
     rating: {
-        type: String,
+        type: Number,
         required: true
     },
     wage: {

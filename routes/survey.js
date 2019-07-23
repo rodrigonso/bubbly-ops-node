@@ -27,7 +27,7 @@ router.get('/rating/:employeeId', async(req, res) => {
   if (!employee) res.status(400).send({ msg: 'No employee with given Id' })
 
   const { rating } = await delighted.metrics.retrieve({ trend: "119223" })
-  employee.rating = rating
+  employee.rating = average
   employee.save()
   res.status(200).send(employee)
 })
