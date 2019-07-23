@@ -30,17 +30,17 @@ router.post('/response', async(req, res) => {
   if (!employee) res.status(400).send({ msg: 'No employee with given Id' })
 
   else {
-  console.log("Employee:", employee)
   console.log("Rating:", employee.rating)
   console.log("Score", req.body.event_data.score)
 
-  emplotee.rating = {
-    count: employee.rating.count++,
-    value: (employee.rating.value + req.body.event_data.score / employee.rating.count).toFixed(2)
-  }
-  employee.save()
+    emplotee.rating = {
+      count: employee.rating.count++,
+      value: ((employee.rating.value + req.body.event_data.score) / employee.rating.count).toFixed(2)
+    }
+    console.log(employee.rating)
+    employee.save()
 
-  res.status(200).send()
+    res.status(200).send()
   }
 })
 
