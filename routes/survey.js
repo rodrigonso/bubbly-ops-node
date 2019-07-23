@@ -33,10 +33,7 @@ router.post('/response', async(req, res) => {
   console.log("Rating:", employee.rating)
   console.log("Score", req.body.event_data.score)
 
-    employee.rating = {
-      count: employee.rating.count + 1,
-      value: ((employee.rating.value + req.body.event_data.score) / employee.rating.count).toFixed(1)
-    }
+    employee.rating = ((employee.rating.value + req.body.event_data.score) / 2).toFixed(1)
     console.log(employee.rating)
     employee.save()
 
