@@ -33,7 +33,7 @@ router.post('/response', async(req, res) => {
   console.log("Rating:", employee.rating)
   console.log("Score", req.body.event_data.score)
 
-    emplotee.rating = {
+    employee.rating = {
       count: employee.rating.count++,
       value: ((employee.rating.value + req.body.event_data.score) / employee.rating.count).toFixed(2)
     }
