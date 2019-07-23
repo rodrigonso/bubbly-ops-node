@@ -36,10 +36,6 @@ router.post('/', async(req, res) => {
         phoneNumber: req.body.phoneNumber,
         username: req.body.username,
         wage: req.body.wage,
-        rating: {
-            count: 0,
-            value: 0
-        },
         jobInProgress: req.body.jobInProgress
     })
 
