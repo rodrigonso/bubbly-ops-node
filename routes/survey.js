@@ -21,24 +21,15 @@ router.post('/', (req, res) => {
   })
 })
 
-router.post('/response', async(req, res) => {
-  const job = await Job.findOne({'jobData.id': req.body.event_data.person_properties.serviceId})
-  console.log(job)
-  if (!job) res.status(400).send({ msg: "no service found with given id" })
+router.get('/rating', async(req, res) => {
 
-  const employee = await Employee.findById(req.body.event_data.person_properties.employeeId)
+  const employee = await Employee.findById(req.param.employeeId)
   if (!employee) res.status(400).send({ msg: 'No employee with given Id' })
 
-  else {
-  console.log("Rating:", employee.rating)
-  console.log("Score", req.body.event_data.score)
-
-    employee.rating = ((employee.rating.value + req.body.event_data.score) / 2).toFixed(1)
-    console.log(employee.rating)
-    employee.save()
-
-    res.status(200).send()
-  }
+  const { rating } = await delighted.metrics.retrieve({ trend: "119223" })
+  employee.rating = rating
+  employee.save()
+  res.status(200).send(employee)
 })
 
 module.exports = router
