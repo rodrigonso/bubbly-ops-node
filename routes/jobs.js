@@ -31,14 +31,12 @@ router.post('/', async(req, res) => {
                 location: jobData.location,
                 start: jobData.start,
                 summary: jobData.summary,
-                start: jobData.start,
-                start: jobData.start,
                 organizer: jobData.organizer
             }
         })
 
         newJob.save()
-        res.send(newJob)
+        res.status(200).send(newJob)
     }
 })
 
@@ -53,7 +51,7 @@ router.post('/:id', async(req, res) => {
 })
 
 router.get('/', async(req, res) => {
-    const jobs = await Job.find().sort({ _id: -1 })
+    const jobs = await Job.find().sort({ date: -1 })
     res.send(jobs)
 })
 
