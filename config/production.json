@@ -1,5 +1,5 @@
 {
-  "mongoURI": "mongodb://rodrigo:rodrigo11@ds123635.mlab.com:23635/bubbly-ops",
+  "mongoURI": "mongodb://rodrigo:rodrigo11@ds141175.mlab.com:41175/bubbly-ops2",
   "jwtSecret": "ASDOLSAOI1923",
   "authToken": "65a39ddd261930990a292bc31a0afd45",
   "accountSid": "AC76b472b733604d0d8ab43004fc39b303",
