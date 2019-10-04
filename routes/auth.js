@@ -67,7 +67,8 @@ router.post("/register", async (req, res) => {
     name,
     email,
     username,
-    phoneNumber
+    phoneNumber,
+    jobInProgress: {}
   });
   newEmployee.save();
 
