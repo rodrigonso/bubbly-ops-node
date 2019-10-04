@@ -53,9 +53,6 @@ function validateUser(user) {
       .min(3)
       .max(30)
       .required(),
-    employeeId: Joi.string()
-      .min(24)
-      .required(),
     password: Joi.string()
       .regex(/^[a-zA-Z0-9]{5,30}$/)
       .required()

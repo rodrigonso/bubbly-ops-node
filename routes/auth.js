@@ -1,5 +1,6 @@
 const express = require("express");
 const { User, validateUser } = require("../models/user-model");
+const { Employee } = require("../models/employee-model");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const config = require("config");
@@ -61,12 +62,16 @@ router.post("/register", async (req, res) => {
   const existingUser = await User.findOne({ email });
   if (existingUser) return res.status(402).send({ msg: "User already exists" });
 
+  // create new employee record
+  const newEmployee = await new Employee({ name, email, username });
+
   // create new user
   const newUser = await new User({
     name,
     email,
     username,
-    password
+    password,
+    employeeId: newEmployee.id
   });
 
   // create salt & hash password
