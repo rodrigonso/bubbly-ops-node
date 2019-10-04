@@ -52,7 +52,7 @@ router.post("/register", async (req, res) => {
   const { name, email, username, password, phoneNumber } = req.body;
 
   // validate user
-  const { error } = validateUser(req.body);
+  const { error } = validateUser({ name, email, username, password });
   if (error) {
     console.log(error.details[0].message);
     return res.status(400).send(error.details[0].message);
