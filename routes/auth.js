@@ -49,7 +49,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-  const { name, email, username, password } = req.body;
+  const { name, email, username, password, phoneNumber } = req.body;
 
   // validate user
   const { error } = validateUser(req.body);
@@ -63,7 +63,12 @@ router.post("/register", async (req, res) => {
   if (existingUser) return res.status(402).send({ msg: "User already exists" });
 
   // create new employee record
-  const newEmployee = await new Employee({ name, email, username });
+  const newEmployee = await new Employee({
+    name,
+    email,
+    username,
+    phoneNumber
+  });
   newEmployee.save();
 
   // create new user
