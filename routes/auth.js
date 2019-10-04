@@ -64,6 +64,7 @@ router.post("/register", async (req, res) => {
 
   // create new employee record
   const newEmployee = await new Employee({ name, email, username });
+  newEmployee.save();
 
   // create new user
   const newUser = await new User({
